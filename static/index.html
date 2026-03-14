@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trynful Admin Console</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Trynful Admin Console</h1>
+      <section class="controls">
+        <label>User <input id="user" value="admin.user" /></label>
+        <label>Role
+          <select id="role">
+            <option value="admin">admin</option>
+            <option value="viewer">viewer</option>
+          </select>
+        </label>
+        <button id="refresh">Refresh Events</button>
+        <p id="roleHint"></p>
+      </section>
+
+      <section class="card">
+        <h2>Create Event</h2>
+        <form id="createForm">
+          <input name="name" placeholder="Event Name" required />
+          <input name="format" placeholder="Format" required />
+          <input name="time_controls" placeholder="Time Controls" required />
+          <input name="capacity" type="number" min="2" value="16" required />
+          <input name="registration_open_at" placeholder="Open At (ISO)" required />
+          <input name="registration_close_at" placeholder="Close At (ISO)" required />
+          <button>Create</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Event Actions</h2>
+        <label>Event
+          <select id="eventSelect"></select>
+        </label>
+        <div class="actions">
+          <button data-action="registration/open">Open Registration</button>
+          <button data-action="registration/close">Close Registration</button>
+          <button data-action="start">Start Event</button>
+          <button data-action="finalize">Finalize Event</button>
+        </div>
+
+        <form id="editForm" class="inline-form">
+          <h3>Edit Event</h3>
+          <input name="name" placeholder="New Name" />
+          <input name="format" placeholder="New Format" />
+          <input name="time_controls" placeholder="New Time Controls" />
+          <input name="capacity" type="number" min="2" placeholder="New Capacity" />
+          <button>Save Event Edits</button>
+        </form>
+
+        <form id="participantForm" class="inline-form">
+          <h3>Participants</h3>
+          <input name="participant" placeholder="Participant" required />
+          <button type="submit" data-mode="add">Add Participant</button>
+          <button type="submit" data-mode="remove">Remove Participant</button>
+        </form>
+
+        <form id="roundForm" class="inline-form">
+          <h3>Publish Round</h3>
+          <input name="round_number" type="number" min="1" required />
+          <button>Publish</button>
+        </form>
+
+        <form id="overrideForm" class="inline-form">
+          <h3>Report Override</h3>
+          <input name="match_id" placeholder="Match ID" required />
+          <input name="reason" placeholder="Reason" required />
+          <input name="result" placeholder="Result" required />
+          <button>Submit Override</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Audit Log</h2>
+        <button id="loadAudit">Load Audit Log</button>
+        <pre id="auditOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>Events</h2>
+        <pre id="eventsOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>API Status</h2>
+        <pre id="status"></pre>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
